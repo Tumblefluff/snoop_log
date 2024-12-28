@@ -1,0 +1,98 @@
+
+/**
+ * - Be sure to edit Line 55 to match expected misspellings of (sub)domains that COULD be directed towards your server
+ * - Line 55 options allow the use of * as a wildcard.
+ */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unlisted Traffic Logger</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #FFFFFF;
+            font-family: Arial, sans-serif;
+        	text-align: center;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background-color: #1e1e1e;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+        }
+        h1, h2 {
+            color: #FF5722;
+        }
+        .details {
+            background-color: #333;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            overflow-x: auto;
+        }
+        .details code {
+            color: #8BC34A;
+        }
+    	.logged {
+			font-size:0.5em;font-style:italic;letter-spacing:0.2em;line-height:1.3em;color:#000000;padding:1.5em;
+		}
+    </style>
+</head>
+<body onload="snoop_log()">
+    <div class="container">
+        <h1>Unlisted Traffic Landing Page</h1>
+        <div class="details">
+            <h2> <p id="message"></p> </h2>
+        	<p><div class="logged">Your visit has been logged.</div> </p>
+        </div>
+    </div>
+    <script>
+        const DOMAIN_PATTERNS = [
+            "typo.domain.tld", "type-o.domain.tld", "tie-poe.domain.tld"
+        ];
+        const origin = window.location.hostname;
+        const isMatch = (hostname, patterns) => {
+            return patterns.some(pattern => {
+                const regex = new RegExp(
+                    "^" + pattern.replace(/\\./g, "\\\\.").replace(/\\*/g, ".*") + "$"
+                );
+                return regex.test(hostname);
+            });
+        };
+        const messageElement = document.getElementById("message");
+        const requestDetailsElement = document.getElementById("requestDetails");
+        if (isMatch(origin, DOMAIN_PATTERNS)) {
+            messageElement.textContent = `"${origin}" matches a common typo. Please double-check your spelling.`;
+        } else {
+            messageElement.textContent = `­Ъце How did you get here? Sussy sussy.`;
+        }
+    function snoop_log() {
+        const data = {
+            userAgent: navigator.userAgent,
+            language: navigator.language,
+            platform: navigator.platform,
+            cookiesEnabled: navigator.cookieEnabled,
+            screenResolution: `${screen.width}x${screen.height}`,
+            referrer: document.referrer,
+            currentUrl: window.location.href,
+            timestamp: new Date().toISOString()
+        };
+        // Send the data to the server via POST
+        fetch('/snoop.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).catch(error => {
+            console.error('Failed to log snoop data:', error);
+        });
+    }
+</script>
+</body>
+</html>
