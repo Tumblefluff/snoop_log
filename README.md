@@ -29,7 +29,7 @@
 
 2. **Upload Your Web Page:**
 
-   Place your `index.html` and any other necessary files into the `/var/www/snoop_log` directory.
+   Place `index.html`, `snoop.php` and any other necessary files into the `/var/www/snoop_log` directory.
 
 3. **Set Permissions:**
 
@@ -94,7 +94,7 @@
 
 2. **Upload Your Web Page:**
 
-   Place your `index.html` and any other necessary files into the `/var/www/snoop_log` directory.
+   Place `index.html`, `snoop.log` and any other necessary files into the `/var/www/snoop_log` directory.
 
 3. **Set Permissions:**
 
@@ -156,7 +156,7 @@ For platforms like HostGator, Bluehost, or GoDaddy, the process generally involv
 
 2. **Uploading Files:**
 
-   Upload your `index.html` and any other necessary files to the `public_html` directory or the root directory designated for your domain.
+   Upload `index.html`, `snoop.log` and any other necessary files to the `public_html` directory or the root directory designated for your domain.
 
 3. **Managing Default Configurations:**
 
@@ -176,11 +176,3 @@ For platforms like HostGator, Bluehost, or GoDaddy, the process generally involv
 ## License
 
 This project is licensed under the [Unlicense](https://unlicense.org/), dedicating the work to the public domain for unrestricted use.
-
-## Contributing
-
-Contributions are welcome! Please fork the repository, make your changes, and submit a pull request.
-
----
-
-If you have further questions or need additional assistance, feel free to reach out!
